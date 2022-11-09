@@ -1,0 +1,12 @@
+.w-color-interactive .w-color-wheel {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    div:nth-child(3) {
+        width: 100px !important;
+        height: 100px !important;
+        background: white !important;
+        inset: auto !important;
+    }
+}

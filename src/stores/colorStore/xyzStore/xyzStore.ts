@@ -31,7 +31,9 @@ export class XyzStore {
 
     //----------------------------------------ACTIONS------------------------------------//
     public setValueColor(value: T_RGB) {
-        const xyzColor =  rgbToXvz(value);
+        const rgbValue = getColorRepresentation<T_RGB>(value);
+        const xyzColor =  rgbToXvz(rgbValue);
+
         const { x, y, z } = getColorRepresentation<T_XYZ>(xyzColor);
 
         this._valueColor = `${x}; ${y}; ${z}`;

@@ -1,7 +1,8 @@
-import { firstLabInPath } from "./routes/paths";
+import { firstLabInPath, secondLabInPath } from "./routes/paths";
 
 export const menuItems = [
     {key: 1, title: "lab1", url: firstLabInPath },
+    {key: 2, title: "lab2", url: secondLabInPath },
 ];
 
 export const SVB_MAX = 100;

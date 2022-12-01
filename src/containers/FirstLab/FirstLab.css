@@ -1,0 +1,24 @@
+.w-color-interactive:nth-child(3) {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    inset: 0px;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+
+
+.wheel-style div:nth-child(3) {
+    position: absolute;
+    border-radius: 50%;
+    background: white !important;
+    inset: 0px;
+    width: 150px !important;
+    height: 150px !important;
+    margin: auto !important;
+}
+
+/* .w-color-interactive .w-color-wheel {
+    width: 500px;
+} */

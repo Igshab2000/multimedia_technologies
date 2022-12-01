@@ -31,7 +31,8 @@ export class YuvStore {
 
     //----------------------------------------ACTIONS------------------------------------//
     public setValueColor(value: T_RGB) {
-        const yuvColor = rgbToYuv(value);
+        const rgbValue = getColorRepresentation<T_RGB>(value);
+        const yuvColor = rgbToYuv(rgbValue);
         const { u, y, v } = getColorRepresentation<T_YUV>(yuvColor);
 
         this._valueColor = `${y}; ${u}; ${v}`;

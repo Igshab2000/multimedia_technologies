@@ -12,11 +12,11 @@ const root = ReactDOM.createRoot(
 );
 
 const applications = (
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       {renderRoutes(routes)}
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 root.render(applications);

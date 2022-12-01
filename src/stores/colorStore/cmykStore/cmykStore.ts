@@ -31,7 +31,9 @@ export class CmykStore {
 
     //----------------------------------------ACTIONS------------------------------------//
     public setValueColor(value: T_RGB) {
-        const cymkColor = rgbToCmyk(value);
+        const rgbValue = getColorRepresentation<T_RGB>(value);
+        const cymkColor = rgbToCmyk(rgbValue);
+
         const { c, y, m, k } = getColorRepresentation<T_CMYK>(cymkColor);
 
         this._valueColor = `${c}; ${m}; ${y}; ${k}`;

@@ -31,7 +31,8 @@ export class HslStore {
 
     //----------------------------------------ACTIONS------------------------------------//
     public setValueColor(value: T_RGB) {
-        const hslColor = rgbToHls(value);
+        const rgbValue = getColorRepresentation<T_RGB>(value);
+        const hslColor = rgbToHls(rgbValue);
         const { h, s, l } = getColorRepresentation<T_HLS>(hslColor);
         
         this._valueColor = `${h}; ${l}; ${s}`;

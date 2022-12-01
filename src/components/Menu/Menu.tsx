@@ -8,11 +8,11 @@ export const Menu: React.FC<IMenuProps> = (props: IMenuProps) => {
 
     const memoizedMenuItems = useMemo(() => {
         return menuItems.map((menuItem) => {
+            console.log("menuItem.url", menuItem.url);
+            
             return(
                 <AntMenu.Item key={menuItem.key}>
-                    <Link
-                        to={menuItem.url}
-                    >
+                    <Link to={menuItem.url}>
                         {menuItem.title} 
                     </Link>
                 </AntMenu.Item>

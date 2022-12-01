@@ -76,11 +76,14 @@ export const rgbToCmyk = (rgb: T_RGB): T_CMYK => {
 
     if(c < tmpK) {
         tmpK = c;
-    } else if(m < tmpK) {
+    } 
+    if(m < tmpK) {
         tmpK = m;
-    } else if(y < tmpK) {
+    } 
+    if(y < tmpK) {
         tmpK = y;
-    } else if(tmpK === 1) {
+    } 
+    if(tmpK === 1) {
         c = 0;
         m = 0;
         y = 0;
@@ -96,6 +99,8 @@ export const rgbToCmyk = (rgb: T_RGB): T_CMYK => {
 }
 
 export const rgbToHls = (rgb: T_RGB): T_HLS => {
+    console.log("rgb_rgbToHls", rgb);
+    
     const { r, g, b } = rgb;
 
     let newR = r / RGB_MAX;
@@ -117,9 +122,9 @@ export const rgbToHls = (rgb: T_RGB): T_HLS => {
             s = deltaRGBValue / (2 - maxValue - minValue);
         }
 
-        const delR = ((maxValue - newR) / 6 + deltaRGBValue / 2);
-        const delG = ((maxValue - newG) / 6 + deltaRGBValue / 2);
-        const delB = ((maxValue - newB) / 6 + deltaRGBValue / 2);
+        const delR = ((maxValue - newR) / 6 + deltaRGBValue / 2) / deltaRGBValue;
+        const delG = ((maxValue - newG) / 6 + deltaRGBValue / 2) / deltaRGBValue;
+        const delB = ((maxValue - newB) / 6 + deltaRGBValue / 2) / deltaRGBValue;
 
         if(newR === maxValue) {
             h = delB - delG;
@@ -138,7 +143,7 @@ export const rgbToHls = (rgb: T_RGB): T_HLS => {
         }
     }
 
-    return { h, l, s };
+    return { h: Math.floor(h * 360), l: Math.floor(s * 100), s: Math.floor(l * 100) };
 }
 
 export const rgbToHsb = (rgb: T_RGB): T_HSB => {

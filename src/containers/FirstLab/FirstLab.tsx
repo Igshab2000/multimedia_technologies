@@ -10,13 +10,14 @@ import { hsvToRgb, rgbToHex, rgbToHsb } from "../../utils/colorConversion";
 import { colorBlockStyle, colorpickerContentStyle, containerStyle, saturationStyle, tableContainer, wheelStyle } from "./FirstLab.styles";
 import { IFirstLabProps, IModelColorItem } from "./FirstLab.types";
 import { ColorDataModel, ColorValue } from "./FirstLab.utils";
-import "./FirstLab.scss";
+
+import "./FirstLab.css";
 
 const stores: TCustomStore[] = [ cmykStore, hsbStore, hslStore, labStore, rgbStore, xyzStore, yuvStore ];
 
 const FirstLab: React.FC<IFirstLabProps> = () => {
-    const [hsvaWheel, setHsvaWheel] = useState({ h: 0, s: 100, v: 100, a: 1 });
-    const [hsvaSaturation, setHsvaSaturation] = useState({ h: hsvaWheel.h, s: 100, v: 100, a: 1 });
+    const [hsvaWheel, setHsvaWheel] = useState(() => {return { h: 0, s: 100, v: 100, a: 1 }});
+    const [hsvaSaturation, setHsvaSaturation] = useState(() => {return { h: hsvaWheel.h, s: 100, v: 100, a: 1 }});
     const [form] = Form.useForm();
     const [editingKey, setEditingKey] = useState('');
     const dataColors: IModelColorItem[] = stores.map((store: TCustomStore) => new ColorDataModel(store));
@@ -24,23 +25,24 @@ const FirstLab: React.FC<IFirstLabProps> = () => {
     const [hexColor, setHexColor] = useState<string>("");
     
     const updateData = useCallback((rgbColor: T_RGB) => {
-        stores.forEach((store) => {
+        const dataColors = stores.map((store) => {
             store.setValueColor(rgbColor);
-        });
+
+            return new ColorDataModel(store);
+        });        
 
         setData(dataColors);
         setHexColor(rgbToHex(rgbColor));
-    }, [dataColors]);
+    }, []);
 
     useEffect(() => {
         const h = Math.round(hsvaWheel.h);
         const s = Math.round(hsvaSaturation.s);
         const v = Math.round(hsvaSaturation.v);
 
-        const rgbColor = hsvToRgb({h, s, v});
-
+        const rgbColor = hsvToRgb({h, s, v});        
         updateData(rgbColor);
-    }, [hsvaSaturation, hsvaWheel, updateData]);
+    }, [hsvaWheel, hsvaSaturation, updateData]);
 
     const handleChangeWheel = useCallback((color: ColorResult) => {
         const h = color.hsva.h;
@@ -71,6 +73,7 @@ const FirstLab: React.FC<IFirstLabProps> = () => {
                     <Wheel
                         color={hsvaWheel}
                         onChange={handleChangeWheel}
+                        className={"wheel-style"}
                     />
                 </div>
                 <div style={saturationStyle}>
@@ -217,7 +220,7 @@ const FirstLab: React.FC<IFirstLabProps> = () => {
     }, [hexColor]);
 
     return (
-        <BaseLayout>
+        <BaseLayout type="1">
             <div style={containerStyle}>
                 {memoizedColorPicker}
                 {memoizedColorBlock}

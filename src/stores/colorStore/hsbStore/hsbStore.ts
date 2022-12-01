@@ -30,7 +30,9 @@ export class HsbStore {
 
     //----------------------------------------ACTIONS------------------------------------//
     public setValueColor(value: T_RGB) {
-        const hsbColor = rgbToHsb(value);
+        const rgbValue = getColorRepresentation<T_RGB>(value);
+        const hsbColor = rgbToHsb(rgbValue);
+
         const { h, s, b } = getColorRepresentation<T_HSB>(hsbColor);
 
         this._valueColor = `${h}; ${s}; ${b}`;

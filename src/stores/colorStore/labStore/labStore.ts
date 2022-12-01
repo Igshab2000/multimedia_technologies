@@ -31,8 +31,10 @@ export class LabStore {
 
     //----------------------------------------ACTIONS------------------------------------//
     public setValueColor(value: T_RGB) {
-        const xyzColor =  rgbToXvz(value);
+        const rgbValue = getColorRepresentation<T_RGB>(value);
+        const xyzColor =  rgbToXvz(rgbValue);
         const labColor = xyzToLab(getColorRepresentation<T_XYZ>(xyzColor));
+        
         const { l, a, b } = getColorRepresentation<T_LAB>(labColor);
 
         this._valueColor = `${l}; ${a}; ${b}`;

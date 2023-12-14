@@ -98,9 +98,7 @@ export const rgbToCmyk = (rgb: T_RGB): T_CMYK => {
     return {c, m, y, k};
 }
 
-export const rgbToHls = (rgb: T_RGB): T_HLS => {
-    console.log("rgb_rgbToHls", rgb);
-    
+export const rgbToHls = (rgb: T_RGB): T_HLS => {    
     const { r, g, b } = rgb;
 
     let newR = r / RGB_MAX;

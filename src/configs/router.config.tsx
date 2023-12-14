@@ -2,10 +2,12 @@ import React from "react";
 import { generatePath, Redirect, RouteChildrenProps } from "react-router";
 import { RouteConfig } from "react-router-config";
 import FirstLab from "../containers/FirstLab/FirstLab";
+import { FourthLab } from "../containers/FourthLab/FourthLab";
 import SecondLab from "../containers/SecondLab/SecondLab";
+import { ThirdLab } from "../containers/ThirdLab/ThirdLab";
 import withLazyLoader from "../hocs/withLazyLoader";
-import { firstLabInKey, secondLabInKey } from "../utils/routes/keys";
-import { firstLabInPath, secondLabInPath } from "../utils/routes/paths";
+import { firstLabInKey, fourthLabInKey, secondLabInKey, thirdLabLabInKey } from "../utils/routes/keys";
+import { firstLabInPath, fourthLabInPath, secondLabInPath, thirdLabInPath } from "../utils/routes/paths";
 
 // const FirstLab = withLazyLoader(() => import("../containers/FirstLab/FirstLab"));
 // const SecondLab = withLazyLoader(() => import("../containers/SecondLab/SecondLab"));
@@ -23,6 +25,18 @@ export const routes: IRoutes[] =  [
         key: secondLabInKey,
         path: secondLabInPath,
         component: SecondLab,
+        exact: true,
+    },
+    {
+        key: thirdLabLabInKey,
+        path: thirdLabInPath,
+        component: ThirdLab,
+        exact: true,
+    },
+    {
+        key: fourthLabInKey,
+        path: fourthLabInPath,
+        component: FourthLab,
         exact: true,
     },
     {

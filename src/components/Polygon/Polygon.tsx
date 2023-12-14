@@ -144,6 +144,8 @@ class Polygon extends React.PureComponent<IPolygonProps, IPolygonState> {
   }
 
   public componentDidUpdate(prevProps: Readonly<IPolygonProps>) {
+    console.log("componentDidUpdate");
+    
     const { file } = this.props;
     if (
       (file && prevProps.file !== file) ||
@@ -257,7 +259,7 @@ class Polygon extends React.PureComponent<IPolygonProps, IPolygonState> {
     const pixels = image.getImageData(0, 0, width, height);
     const data = pixels.data;
     let includedInterval = 0;
-
+    
     for (let i = 0; i < data.length; i += 4) {
       if (includedInterval === width) {
         includedInterval = 0;
@@ -338,12 +340,12 @@ class Polygon extends React.PureComponent<IPolygonProps, IPolygonState> {
   public render() {
     return (
       <>
-        <div id={"target"} style={{ display: "flex" }}>
-          <div>
+        <div id={"target"} style={{ display: "flex", justifyContent: "space-around"}}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <canvas ref={this.imgSrcRef} width={350} height={350} />
             <canvas ref={this.histogramSrcRef} width={350} height={108} />
           </div>
-          <div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <canvas ref={this.imgOutRef} width={350} height={350} />
             <canvas ref={this.histogramOutRef} width={350} height={108} />
           </div>
